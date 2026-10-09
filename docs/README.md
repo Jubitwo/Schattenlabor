@@ -1,49 +1,31 @@
 # Dokumentation: Licht an! – Das Schattenlabor
 
-## Lernziel und Ablauf
+## Lernziel
 
-Die Seite macht sichtbar, wie Licht geradlinig verläuft und wie Lichtquellen, undurchsichtige Körper und eine Wand ein Schattenbild erzeugen. Lernende wechseln vom Erklärteil ins virtuelle Experiment, bearbeiten Forscheraufträge und sichern Ergebnisse in einer Heftzeichnung.
+Die Seite zeigt, wie geradlinige Lichtausbreitung, Lichtquellen und undurchsichtige Körper ein Schattenbild erzeugen.
 
 ## Bereiche und Funktionen
 
-1. **Start** – Grundidee von Lichtweg, Körper und Schattenbild sowie Hinweise zum Arbeiten.
-2. **Schattenlabor** – Lampen A, B und C schalten; Abstände zwischen Lampe, Körper und Wand, Körperbreite und Lichtquellengröße verändern. Draufsicht und Wandansicht zeigen den Versuchsaufbau und das Ergebnis.
-3. **Forscheraufträge** – Vermuten, messen und begründen: Schatten vergrößern, weiche Ränder erklären, beleuchtete Bereiche überlagern, getrennte Schatten und mehrere Lampen untersuchen.
-4. **Handschatten** – Schattentheater mit Hase, Vogel und Hund sowie Experimente mit einer zweiten Lichtquelle.
-5. **Heftbild** – Entstehung von Schatten, Kernschatten und Halbschatten zeichnen, mit Checkliste prüfen und als PDF drucken.
+1. **Start** – Lichtweg, Körper und Schattenbild.
+2. **Schattenlabor** – Lampen A, B und C schalten; Abstände, Körperbreite und Lichtquellengröße ändern; Aufbau und Wandansicht vergleichen.
+3. **Forscheraufträge** – Schatten vergrößern, weiche Ränder, Lichtüberlagerung, getrennte Schatten und mehrere Lampen untersuchen.
+4. **Handschatten** – Schattentheater mit Hase, Vogel und Hund sowie Partnerexperiment mit zwei Lichtquellen.
+5. **Heftbild** – Schatten sowie Kern- und Halbschatten zeichnen, Checkliste und Druck/PDF.
 
-Im Labor stehen vorbereitete Versuchssituationen zur Verfügung; sie können als Ausgangspunkt für eigene Untersuchungen verwendet werden.
+## Datei und Start
 
-## Dateiaufbau und Start
+[index.html](../index.html) enthält Simulation, Aufträge, Zeichenschritte und Druckansicht. In aktuellem Browser öffnen.
 
-- [index.html](../index.html) – Erklärungen, Simulation, Aufgaben, Zeichenschritte und Druckansicht.
+## Prüfung
 
-Die Lernseite kann in einem aktuellen Browser geöffnet werden.
+Einzelne und mehrere Lampen, Abstand und Lichtquellengröße variieren. Schattenarten und Forscheraufträge fachlich prüfen; Zeichnung, Reset und Druckausgabe testen.
 
-## Prüfung nach Änderungen
+## Pflege
 
-- Einzelne Lampen sowie Kombinationen aus mehreren Lampen testen.
-- Abstand, Körperbreite und Quellengröße verändern und die Schattenänderung beobachten.
-- Für Kern- und Halbschatten, weiche Ränder und getrennte Schatten die erwartete Lichtüberlagerung fachlich prüfen.
-- Forscheraufträge samt Rückmeldungen, Zeichenschritten und Druck/PDF-Ausgabe testen.
-- Aufbau zurücksetzen und mobile Darstellung prüfen.
+Issues mit Versuchsfrage, Aufbau, Beobachtung und erwarteter Erklärung erfassen.
 
-## Pflege und offene Aufgaben
-
-Neue Versuche als Issues mit Versuchsfrage, veränderter Größe, Beobachtung und erwarteter Erklärung erfassen.
-
-### Pflege-Checkliste
-
-- [ ] Strahlenmodell und Schattenbegriffe fachlich korrekt
-- [ ] Simulation und Beschriftungen zeigen denselben Aufbau
-- [ ] Forscheraufträge lassen sich mit dem Labor nachvollziehen
-- [ ] Heftvorlage und Druckansicht funktionieren
-- [ ] Bedienbarkeit per Tastatur und auf kleinen Bildschirmen geprüft
-- [ ] Dokumentation aktualisiert
-
-### Issue-Vorlage
-
-- **Versuchsfrage:**
-- **Veränderter Aufbau:**
-- **Erwartete Beobachtung/Erklärung:**
-- **Prüfschritte:**
+- [ ] Strahlenmodell und Schattenbegriffe korrekt
+- [ ] Anzeigen stimmen mit Aufbau überein
+- [ ] Aufträge im Labor nachvollziehbar
+- [ ] Heftbild und Druck geprüft
+- [ ] Tastatur- und Mobilbedienung geprüft
