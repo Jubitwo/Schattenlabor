@@ -6,7 +6,11 @@ Interaktives Physik-Experimentierlabor zu Lichtausbreitung, Schattenbild, Kern- 
 
 Versuchsaufbau mit mehreren Lampen verändern, Schatten untersuchen, Forscheraufträge bearbeiten, Handschatten ausprobieren und Ergebnisse als Heftbild sichern.
 
-## Schnellstart
+## Online öffnen
+
+[Licht an! – Das Schattenlabor](https://jubitwo.github.io/Schattenlabor/)
+
+## Lokal starten
 
 Repository herunterladen oder klonen und [index.html](./index.html) in einem aktuellen Browser öffnen.
 
