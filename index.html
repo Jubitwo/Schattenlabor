@@ -40,6 +40,11 @@
     .paper-writing[hidden],.digital-writing[hidden],.scene-handle[hidden]{display:none!important}
     .expanded-lab .canvas-wrap{aspect-ratio:900/460}main:has(.expanded-lab){max-width:1500px}.scene-toolbar{scroll-margin-top:80px}
     .mobile-task{padding:14px 18px;border-radius:12px}.mobile-task input[type=checkbox]{width:24px;height:24px;vertical-align:middle;accent-color:var(--accent)}.mobile-task .paper-writing{display:block;padding:8px 0}.mobile-task .research-jump{display:none}.probe-control{display:block;font-size:.9rem}.probe-control input[type=range]{display:block;width:100%;min-height:44px}.preview .probe-note{color:var(--ink)}#research-steps[hidden]{display:none}
+    .scene-handle{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0;padding:4px 7px;line-height:1.1;box-shadow:0 0 0 4px #12233380}
+    .handle-arrow{font-size:1.65rem;line-height:1}.scene-handle[data-drag="object"]{width:auto}
+    .scene-handle[data-drag="size"],.scene-handle[data-drag="source"]{font-size:.8rem}
+    .drag-guide{margin:8px 0;padding:12px 16px;background:#e0f2f0;color:var(--ink);border-radius:12px}
+    .mobile-task li{margin:12px 0}.mission .protocol-label{margin-top:14px}
     @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.drawing [data-step]{transition:none}}
     @media print{.research-layout{display:block}.research-lab,.research-picker,.research-jump,.scene-toolbar,.scene-tools,.picture-match,.controls.open{display:none!important}.mission[hidden]{display:block}.mission .goal{display:block}.mission textarea{min-height:20mm}}
     @media print{@page{size:A4;margin:14mm}body{background:white;font-size:10pt;color:#000}header,nav,footer,.no-print,.actions,.step-controls,.checks,.end-message{display:none!important}main{padding:0;max-width:none}section[hidden]{display:block!important}body.print-notebook section:not(#heft){display:none!important}.section-heading h2{font-size:18pt!important}.card,.notebook-sheet{border:1px solid #aaa;padding:14px;margin:10px 0;border-radius:0;break-inside:avoid}.notebook-steps{grid-template-columns:1fr}.drawing{max-height:65mm;object-fit:contain}.drawing [data-step]{opacity:1!important}.lab-layout,.grid,.grid.two{display:block}.stage,.controls,.preview,.presets,.live-note{display:none}.merksatz{background:none;border:1px solid #aaa}.callout{background:none;border:1px solid #aaa}.badge{color:black;background:none}.mission label{padding:4px}.hand-art{height:75px}details{display:none}.notebook-sheet+ .notebook-sheet{break-before:page}}
@@ -86,13 +91,14 @@
     </section>
 
     <section id="labor" aria-labelledby="labor-title" hidden>
-      <div class="section-heading"><div><h2 id="labor-title" tabindex="-1">Dein Experimentiertisch</h2><p>Tippe A, B oder C zum Schalten an. Ziehe den Körper nach links oder rechts; ziehe seinen orangefarbenen Griff zum Vergrößern. Ziehe A oder B nach oben oder unten, um den Lampenabstand zu ändern.</p></div><span class="badge">Labor · 10–15 Minuten</span></div>
+      <div class="section-heading"><div><h2 id="labor-title" tabindex="-1">Dein Experimentiertisch</h2><p>Starte mit zwei Lampen: Wo ist Kernschatten, wo Halbschatten? Die Pfeile zeigen, was du direkt im Bild verschieben oder vergrößern kannst.</p></div><span class="badge">Labor · 10–15 Minuten</span></div>
       <div class="scene-toolbar"><button class="btn secondary" id="toggle-controls" aria-expanded="false" aria-controls="precise-controls">Genaue Werte einstellen</button><button class="btn secondary" id="expand-lab" aria-pressed="false">Große Ansicht</button><div class="source-tools" aria-label="Leuchtende Fläche ändern"><button class="btn secondary" id="source-minus" aria-label="Leuchtfläche um 0,2 cm verkleinern">Fläche −</button><output id="direct-source-value"></output><button class="btn secondary" id="source-plus" aria-label="Leuchtfläche um 0,2 cm vergrößern">Fläche +</button></div></div>
       <div class="lab-layout">
         <div>
           <div class="stage">
             <div class="stage-top"><h3>Versuchsaufbau · Draufsicht</h3><span>Gelb: Lichtweg · gestrichelt: Randstrahlen</span></div>
-            <div class="canvas-wrap"><canvas id="scene" width="900" height="460" role="img" aria-label="Draufsicht auf Lampen, Körper, Randstrahlen und Wand. Die Beschreibung steht unter dem Versuch."></canvas><div class="scene-tools" aria-label="Elemente im Schaubild bedienen"><button class="scene-handle" data-drag="lamp" data-direct-lamp="0" aria-pressed="true" aria-label="Lampe A: antippen zum Schalten; nach oben oder unten ziehen für Lampenabstand">A</button><button class="scene-handle" data-drag="lamp" data-direct-lamp="1" aria-pressed="false" aria-label="Lampe B: antippen zum Schalten; nach oben oder unten ziehen für Lampenabstand">B</button><button class="scene-handle" data-direct-lamp="2" aria-pressed="false" aria-label="Lampe C schalten; sie bleibt in der Mitte">C</button><button class="scene-handle" data-drag="object" aria-label="Körper horizontal verschieben; Pfeiltasten links und rechts">↔</button><button class="scene-handle" data-drag="size" aria-label="Körperbreite ändern; vertikal ziehen oder Pfeiltasten oben und unten">↕</button></div></div>
+            <p class="drag-guide"><strong>Direkt im Bild ausprobieren:</strong> A/B antippen: an oder aus. <strong>↕ A/B ziehen:</strong> Lampenabstand ändern (beide bewegen sich). <strong>↔ Schieben:</strong> Körper bewegen. <strong>↕ Breite:</strong> Körper vergrößern. <strong>↕ Leuchtfläche:</strong> Lichtquelle vergrößern.</p>
+            <div class="canvas-wrap"><canvas id="scene" width="900" height="460" role="img" aria-label="Draufsicht auf Lampen, Körper, Randstrahlen und Wand. Die Beschreibung steht unter dem Versuch."></canvas><div class="scene-tools" aria-label="Elemente im Schaubild bedienen"><button class="scene-handle" data-drag="lamp" data-direct-lamp="0" aria-pressed="true" aria-label="Lampe A: antippen zum Schalten; nach oben oder unten ziehen für Lampenabstand">↕ A</button><button class="scene-handle" data-drag="lamp" data-direct-lamp="1" aria-pressed="true" aria-label="Lampe B: antippen zum Schalten; nach oben oder unten ziehen für Lampenabstand">↕ B</button><button class="scene-handle" data-drag="object" aria-label="Körper horizontal verschieben; Pfeiltasten links und rechts"><span class="handle-arrow" aria-hidden="true">↔</span><span>Schieben</span></button><button class="scene-handle" data-drag="size" aria-label="Körperbreite ändern; vertikal ziehen oder Pfeiltasten oben und unten"><span class="handle-arrow" aria-hidden="true">↕</span><span>Breite</span></button></div></div>
             <div class="scene-measures" id="scene-measures" aria-live="polite"></div>
             <div class="stage-foot">Links: Lichtquellen → Mitte: lichtundurchlässiger Körper → Rechts: Wand. Dunkle Flächen zeigen die hinter dem Körper liegenden Schattenbereiche.</div>
           </div>
@@ -110,9 +116,8 @@
           <div class="lamp-buttons">
             <button class="lamp-toggle" data-lamp="0" aria-pressed="true"><strong>Lampe A</strong><span>An</span></button>
             <button class="lamp-toggle" data-lamp="1" aria-pressed="false"><strong>Lampe B</strong><span>Aus</span></button>
-            <button class="lamp-toggle" data-lamp="2" aria-pressed="false"><strong>Lampe C</strong><span>Aus</span></button>
           </div>
-          <p class="small">A liegt oberhalb, B unterhalb der Mitte; C liegt in der Mitte. Bei Abstand 0 liegen alle am selben Ort.</p>
+          <p class="small">A liegt oberhalb, B unterhalb der Mitte. Beim Ziehen verändert sich ihr Abstand symmetrisch. Bei Abstand 0 liegen beide am selben Ort.</p>
           <div class="control"><label for="object-x">2 · Abstand Lampe–Körper <output id="object-x-value"></output></label><input id="object-x" type="range" min="18" max="60" step="1" value="36"><div class="range-ends"><span>Näher zur Lampe</span><span>Näher zur Wand</span></div></div>
           <div class="control"><label for="object-size">3 · Körperbreite <output id="object-size-value"></output></label><input id="object-size" type="range" min="3" max="12" step=".5" value="7"><div class="range-ends"><span>Kleiner</span><span>Größer</span></div></div>
           <div class="control"><label for="lamp-gap">4 · Abstand A–B <output id="lamp-gap-value"></output></label><input id="lamp-gap" type="range" min="0" max="22" step=".5" value="0"><div class="range-ends"><span>Zusammen</span><span>Auseinander</span></div></div>
@@ -124,10 +129,10 @@
         </aside>
       </div>
       <div class="presets" aria-label="Beispielaufbauten">
-        <button data-preset="sharp">Ein scharfer Schatten</button><button data-preset="large">Ein großer Schatten</button><button data-preset="soft">Weiche Ränder</button><button data-preset="overlap">Kern- und Halbschatten</button><button data-preset="separate">Zwei getrennte Schatten</button><button data-preset="three">Drei Lampen</button>
+        <button data-preset="sharp">Ein scharfer Schatten</button><button data-preset="large">Ein großer Schatten</button><button data-preset="soft">Weiche Ränder</button><button data-preset="overlap">Kern- und Halbschatten</button><button data-preset="separate">Zwei getrennte Schatten</button>
       </div>
       <div class="live-note" id="observation" aria-live="polite" aria-atomic="true"></div>
-      <details><summary>Was bedeuten die Anzeigen und die Farben?</summary><p><strong>Schattenbreite</strong> ist die gesamte Breite auf der Wand, in der mindestens ein Teil des Lampenlichts fehlt. Bei getrennten Schatten werden nur die dunkleren Streifen addiert, nicht die helle Lücke. Bei einer einzelnen Punktquelle heißt der dunkle Bereich einfach Schatten. Bei mehreren oder ausgedehnten Lichtquellen sprechen wir bei vollständig abgeschirmtem Licht von Kernschatten.</p><p><strong>Halbschatten</strong> heißt nicht automatisch „halb so dunkel“. Bei zwei gleich hellen Punktquellen kommt dort Licht von genau einer Lampe an. Bei drei Quellen kann eine oder können zwei Lampen den Bereich beleuchten. Der allgemeinere Begriff ist <strong>Teilschatten</strong>. Bei einer ausgedehnten Lichtquelle entstehen stufenlose Übergänge, weil nur ein Teil ihrer leuchtenden Fläche sichtbar ist.</p><p>Die Längen sind Modellwerte in Zentimetern; die Draufsicht ist maßstäblich. Die Wand ist 74 cm von den Lampen entfernt. Wir zeigen einen 40 cm breiten Wandausschnitt. An dessen Rand angeschnittene Schatten werden ausdrücklich angezeigt. Die Breitenanzeige berechnet dagegen den gesamten Schatten.</p><p>Die weichen Ränder werden aus vielen kleinen Lichtquellen berechnet, nicht durch einen Unschärfefilter. Die Simulation behandelt eine ausgedehnte Quelle als leuchtende Linie im gezeigten Schnitt.</p></details>
+      <details><summary>Was bedeuten die Anzeigen und die Farben?</summary><p>Bei zwei eingeschalteten Punktquellen gilt: <strong>Hell:</strong> Beide Lampen erreichen den Wandpunkt. <strong>Halbschatten:</strong> Genau eine Lampe erreicht ihn. <strong>Kernschatten:</strong> Beide Lichtwege sind blockiert.</p><p><strong>Schattenbreite</strong> zählt alle dunkleren Streifen zusammen, aber keine helle Lücke. Bei nur einer Punktquelle heißt der dunkle Bereich einfach Schatten. Eine größere Leuchtfläche erzeugt weiche Übergänge: Nur ein Teil der Fläche ist vom Wandpunkt aus sichtbar. Diese Übergangsbereiche heißen auch Teilschatten.</p><p>Die Längen sind Modellwerte in Zentimetern. Die Wand bleibt 74 cm von den Lampen entfernt. Der Wandausschnitt ist 40 cm breit. Größere Schatten können am Bildrand abgeschnitten sein; die Zahlen zeigen trotzdem die gesamte Breite.</p><p>Die Lichtquellen sind im Modell gleich hell. Weiche Ränder entstehen durch viele Punkte der leuchtenden Fläche, nicht durch einen Unschärfefilter.</p></details>
       <p class="book">S. 40, Bilder 1–3: Entstehung und Ränder · S. 39, Bilder 1–3: Überlagerung mehrerer Schatten.</p>
       <div class="actions"><button class="btn" data-go="aufgaben">Jetzt selbst erforschen →</button></div>
     </section>
@@ -136,7 +141,7 @@
       <div class="section-heading"><div><h2 id="aufgaben-title" tabindex="-1">Vermute. Miss. Begründe.</h2><p>Auftrag und Labor bleiben auf derselben Seite. Vermute vor dem Versuch, protokolliere Messungen und begründe deine Ergebnisse mit Randstrahlen. Nutze bei Bedarf das Buch und die Forschertipps.</p></div><span class="badge">Forschen · ca. 30–40 Minuten</span></div>
       <div class="progress-wrap"><progress id="quiz-progress" max="6" value="0" aria-label="Geprüfte Forscheraufträge mit Protokoll"></progress><span id="quiz-count">0 von 6 Aufträgen abgeschlossen</span></div>
       <label for="research-picker"><strong>Wähle deinen Forscherauftrag</strong></label>
-      <select id="research-picker" class="research-picker"><option value="size">1 · Schatten gezielt vergrößern</option><option value="edge">2 · Schattenränder messen</option><option value="core">3 · Kernschatten und Lichtwege</option><option value="separate">4 · Die Grenze zum getrennten Schatten</option><option value="three">5 · Drei Lampen und Helligkeitsstufen</option><option value="desk">6 · Schreibtischbeleuchtung begründen</option></select>
+      <select id="research-picker" class="research-picker"><option value="size">1 · Schatten größer machen</option><option value="edge">2 · Scharfe und weiche Ränder</option><option value="core">3 · Kernschatten und Halbschatten</option><option value="separate">4 · Schatten trennen</option><option value="brightness">5 · Dunkel, grau und hell</option><option value="desk">6 · Licht beim Schreiben</option></select>
       <div class="paper-mode"><label for="paper-mode"><input id="paper-mode" type="checkbox" checked> Vermutungen und Erklärungen auf Papier schreiben (empfohlen auf dem iPad)</label><p class="small">Messwerte sicherst du hier. Vermutungen, Erklärungen und Skizzen gehören ins Heft oder auf das Arbeitsblatt. Wenn du hier tippen möchtest, entferne den Haken. Freie Texte und Papierantworten werden nicht automatisch fachlich bewertet. Ein Neuladen löscht das digitale Protokoll.</p></div>
       <div class="research-layout"><div id="research-missions">
       <article class="card mission" data-quiz="size">
@@ -169,12 +174,12 @@
         <button class="btn" data-check="separate">Antwort prüfen</button><div class="feedback" role="status"></div>
         <details><summary>Forschertipp</summary><p>Beobachte die beiden Schatten, während du den Lampenabstand langsam erhöhst. Bei Abstand 0 liegen ihre Schatten genau übereinander: Du siehst ein einziges Schattenbild. Bei großem Abstand kann die gemeinsame dunkle Überlappung verschwinden.</p></details>
       </article>
-      <article class="card mission" data-quiz="three">
-        <header><span class="badge">Auftrag 5 · Drei Lampen</span><h3>Ist Teilschatten immer „halb“?</h3></header><p class="goal">Schalte drei gleich helle Punktquellen ein und suche mehrere Graustufen.</p><p class="book">S. 39, Aufgabe 3: Nutze den Laboraufbau für deine eigene Randstrahlskizze.</p>
-        <button class="btn secondary" data-experiment="three">Drei Lampen im Labor untersuchen</button>
-        <fieldset><legend>Ein Wandpunkt erhält Licht von zwei der drei Lampen. Wie heißt der Bereich?</legend><label><input type="radio" name="three" value="full"> Vollständig beleuchteter Bereich, weil zwei Lampen reichen.</label><label><input type="radio" name="three" value="partial"> Teilschatten: Ein Teil der Lichtquellen ist verdeckt.</label><label><input type="radio" name="three" value="core"> Kernschatten, weil eine Lampe verdeckt ist.</label></fieldset>
-        <button class="btn" data-check="three">Antwort prüfen</button><div class="feedback" role="status"></div>
-        <details><summary>Forschertipp</summary><p>Zähle, wie viele freie Lichtwege ein Punkt besitzt: 0 von 3 = Kernschatten, 1 oder 2 von 3 = Teilschatten, 3 von 3 = vollständig beleuchtet. Die Helligkeitsanteile 1/3 und 2/3 gelten hier für gleich helle Lampen im vereinfachten Modell.</p></details>
+      <article class="card mission" data-quiz="brightness">
+        <header><span class="badge">Auftrag 5 · Helligkeit</span><h3>Dunkel, grau und hell</h3></header><p class="goal">Vergleiche zwei Lampen mit einer Lampe.</p><p class="book">S. 39, Bild 2: Kernschatten und Halbschatten.</p>
+        <button class="btn secondary" data-experiment="overlap">Helligkeitsstufen untersuchen</button>
+        <fieldset><legend>Ein Punkt wird von beiden Lampen beleuchtet. Wie heißt der Bereich?</legend><label><input type="radio" name="brightness" value="core"> Kernschatten.</label><label><input type="radio" name="brightness" value="lit"> Vollständig beleuchteter Bereich.</label><label><input type="radio" name="brightness" value="partial"> Halbschatten.</label></fieldset>
+        <button class="btn" data-check="brightness">Antwort prüfen</button><div class="feedback" role="status"></div>
+        <details><summary>Forschertipp</summary><p>Zähle die freien Lichtwege: keiner, einer oder beide. Vergleiche danach mit nur einer eingeschalteten Lampe.</p></details>
       </article>
       <article class="card mission" data-quiz="desk">
         <header><span class="badge">Auftrag 6 · Alltag</span><h3>Deine Hand verdeckt beim Schreiben das Licht.</h3></header><p class="goal">Wie platzierst du deine Schreibtischlampe sinnvoll?</p><p class="book">S. 41, Bilder 4 und 5 sowie Aufgabe 4: Schatten beim Schreiben und in Unterrichtsräumen.</p>
@@ -242,19 +247,18 @@
     "use strict";
     const ShadowLab = (() => {
       const SCALE = 10, LAMP_X = 90, WALL_X = 830, CENTER_Y = 230, WALL_HALF = 200;
-      const state = { lamps: [true, false, false], distance: 36, size: 7, gap: 0, source: 0, rays: true, shadows: true };
+      const state = { lamps: [true, true], distance: 36, size: 7, gap: 6, source: 0, rays: true, shadows: true };
       const presets = {
-        sharp: { lamps: [true,false,false], distance:36, size:7, gap:0, source:0 },
-        large: { lamps: [true,false,false], distance:20, size:7, gap:0, source:0 },
-        soft: { lamps: [true,false,false], distance:32, size:7, gap:0, source:6 },
-        overlap: { lamps: [true,true,false], distance:36, size:7, gap:6, source:0 },
-        separate: { lamps: [true,true,false], distance:36, size:7, gap:18, source:0 },
-        three: { lamps: [true,true,true], distance:36, size:7, gap:12, source:0 }
+        sharp: { lamps: [true,false], distance:36, size:7, gap:0, source:0 },
+        large: { lamps: [true,false], distance:20, size:7, gap:0, source:0 },
+        soft: { lamps: [true,false], distance:32, size:7, gap:0, source:6 },
+        overlap: { lamps: [true,true], distance:36, size:7, gap:6, source:0 },
+        separate: { lamps: [true,true], distance:36, size:7, gap:18, source:0 }
       };
       const scene = document.getElementById("scene"), wall = document.getElementById("wall");
       const tools=document.querySelector(".scene-tools");
       const sourceHandle=document.createElement("button");
-      sourceHandle.className="scene-handle";sourceHandle.dataset.drag="source";sourceHandle.textContent="Fläche ↕";
+      sourceHandle.className="scene-handle";sourceHandle.dataset.drag="source";sourceHandle.innerHTML='<span class="handle-arrow" aria-hidden="true">↕</span><span>Leuchtfläche</span>';
       sourceHandle.setAttribute("aria-label","Leuchtfläche ändern: nach oben ziehen zum Vergrößern; Pfeiltasten oben und unten");
       tools.append(sourceHandle);
       let probeSelected=false;
@@ -266,7 +270,7 @@
         return null;
       }
       function sources() {
-        return [-state.gap*SCALE/2, state.gap*SCALE/2, 0].map((offset,index) => ({ y:CENTER_Y+offset, index, on:state.lamps[index] }));
+        return [-state.gap*SCALE/2, state.gap*SCALE/2].map((offset,index) => ({ y:CENTER_Y+offset, index, on:state.lamps[index] }));
       }
       function bounds(sourceY) {
         const objectX = LAMP_X + state.distance*SCALE;
@@ -321,7 +325,7 @@
       function line(x1,y1,x2,y2,color,width=1,dash=[]) {
         ctx.beginPath();ctx.setLineDash(dash);ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);ctx.strokeStyle=color;ctx.lineWidth=width;ctx.stroke();ctx.setLineDash([]);
       }
-      const lampColors = ["#f5bd49","#76d2dc","#e7a2d7"];
+      const lampColors = ["#f5bd49","#76d2dc"];
       function drawScene(active) {
         ctx.clearRect(0,0,900,460);ctx.fillStyle="#122333";ctx.fillRect(0,0,900,460);
         ctx.strokeStyle="#243c50";ctx.lineWidth=1;
@@ -398,7 +402,7 @@
           return;
         }
         const single=active.length===1 && state.source===0;
-        readout.innerHTML=`<div><strong>${format(m.total)} cm</strong> gesamte Schattenbreite</div><div><strong>${format(m.core)} cm</strong> ${single ? "vollständig dunkler Schatten" : "Kernschatten"}</div><div><strong>${format(m.partial)} cm</strong> ${state.source>0 ? "Übergangsbereiche / Teilschatten" : "Halb- / Teilschatten"}</div>`;
+        readout.innerHTML=`<div><strong>${format(m.total)} cm</strong> gesamte Schattenbreite</div><div><strong>${format(m.core)} cm</strong> ${single ? "vollständig dunkler Schatten" : "Kernschatten"}</div><div><strong>${format(m.partial)} cm</strong> ${state.source>0 ? "Übergangsbereiche / Teilschatten" : "Halbschatten zusammen"}</div>`;
         let text;
         if(single) text=`Eine punktförmige Lampe ist an. Sie erzeugt einen <strong>scharf begrenzten Schatten</strong>. Das Schattenbild ist ${format(74/state.distance)}-mal so breit wie der Körper.`;
         else if(state.source>0) text=`${active.length===1 ? "Eine ausgedehnte Lichtquelle ist" : active.length+" ausgedehnte Lichtquellen sind"} an. Verschiedene Teile der leuchtenden Fläche erzeugen versetzte Schatten. Dadurch entstehen <strong>weiche Übergänge</strong>. ${m.core>0 ? "In der Mitte gibt es einen vollständig dunklen Kernschatten." : "Es gibt bei diesem Aufbau keinen Kernschatten: Überall erreicht noch etwas Licht die Wand."}`;
@@ -423,14 +427,15 @@
         document.getElementById("show-rays").checked=state.rays;document.getElementById("show-shadows").checked=state.shadows;
         const place=(element,x,y)=>{element.style.left=x/9+"%";element.style.top=y/4.6+"%";};
         const sceneWidth=scene.getBoundingClientRect().width||900;
-        const separated=state.gap*SCALE/2*sceneWidth/900>=52;
+        const separated=state.gap*SCALE*sceneWidth/900>=58;
         sources().forEach(lamp=>{
           const button=tools.querySelector(`[data-direct-lamp="${lamp.index}"]`);
           // The separate buttons remain reachable when emitters share the same position.
           const x=separated?LAMP_X-28:35+lamp.index*Math.max(65,52/sceneWidth*900);
           place(button,x,separated?lamp.y:CENTER_Y);
           button.setAttribute("aria-pressed",String(lamp.on));
-          button.title=`Lampe ${"ABC"[lamp.index]} ${lamp.on?"an":"aus"}`;
+          button.title=`Lampe ${"AB"[lamp.index]} ${lamp.on?"an":"aus"} · antippen oder ↕ ziehen`;
+          button.innerHTML=`<span class="handle-arrow" aria-hidden="true">↕</span><span>${"AB"[lamp.index]} · ${lamp.on?"an":"aus"}</span>`;
         });
         const objectX=LAMP_X+state.distance*SCALE;
         place(tools.querySelector('[data-drag="object"]'),objectX,CENTER_Y);
@@ -449,7 +454,7 @@
         marker.hidden=false;marker.style.left=position+"%";
         const names=active.map(lamp=>{
           const fraction=receivedLight(y,[lamp]);
-          return `${"ABC"[lamp.index]}: ${fraction<.001?"blockiert":fraction>.999?"erreicht den Punkt":"teilweise frei ("+Math.round(fraction*100)+" %)"}`;
+          return `${"AB"[lamp.index]}: ${fraction<.001?"blockiert":fraction>.999?"erreicht den Punkt":"teilweise frei ("+Math.round(fraction*100)+" %)"}`;
         });
         const light=receivedLight(y,active);
         const region=!active.length?"kein Lampenlicht":light<.001?"dunkler Schatten":light>.999?"vollständig beleuchtet":active.length===2&&state.source===0?"Halbschatten":"Teilschatten";
@@ -464,7 +469,7 @@
       for(const [id,key] of Object.entries({"object-x":"distance","object-size":"size","lamp-gap":"gap","source-size":"source"}))document.getElementById(id).addEventListener("input",event=>{state[key]=Number(event.target.value);sync();render();});
       for(const [id,key] of [["show-rays","rays"],["show-shadows","shadows"]])document.getElementById(id).addEventListener("change",event=>{state[key]=event.target.checked;render();});
       document.querySelectorAll("[data-preset]").forEach(button=>button.addEventListener("click",()=>setPreset(button.dataset.preset)));
-      document.getElementById("reset-lab").addEventListener("click",()=>setPreset("sharp"));
+      document.getElementById("reset-lab").addEventListener("click",()=>setPreset("overlap"));
       document.getElementById("toggle-controls").addEventListener("click",event=>{
         const open=document.getElementById("precise-controls").classList.toggle("open");
         event.currentTarget.setAttribute("aria-expanded",String(open));
@@ -573,89 +578,89 @@
         if(ok)correct++;select.setAttribute("aria-invalid",String(!ok));
       });
       const feedback=document.getElementById("picture-feedback");feedback.className="feedback "+(correct===4?"good":"retry");
-      feedback.textContent=correct===4?"4 von 4 richtig! Im Labor stehen die Buchstaben A, B und C für Lichtquellen. Der graue Körper hält Licht auf; auf der Wand entsteht das Schattenbild.":"Noch nicht alle richtig ("+correct+" von 4). Vergleiche Buch S. 40, Bild 1: Wo beginnt das Licht, was hält es auf, und wo wird der Schatten sichtbar? Der Pfeil zeigt einen gedachten Lichtweg.";
+      feedback.textContent=correct===4?"4 von 4 richtig! Im Labor stehen A und B für die zwei Lichtquellen. Der graue Körper hält Licht auf; auf der Wand entsteht das Schattenbild.":"Noch nicht alle richtig ("+correct+" von 4). Vergleiche Buch S. 40, Bild 1: Wo beginnt das Licht, was hält es auf, und wo wird der Schatten sichtbar? Der Pfeil zeigt einen gedachten Lichtweg.";
     });
     const quizData = {
       size:{answer:"lamp"},edge:{answer:"parts"},core:{answer:"none"},
-      separate:{answer:"split"},three:{answer:"partial"},desk:{answer:"opposite"}
+      separate:{answer:"split"},brightness:{answer:"lit"},desk:{answer:"opposite"}
     };
     const solved=new Set();
     const protocols=new Map();
-    const sameSetup=(sample,expected)=>Object.entries(expected).every(([key,value])=>Array.isArray(value)?value.every((on,i)=>sample.lamps[i]===on):sample[key]===value);
+    const sameSetup=(sample,expected)=>Object.entries(expected).every(([key,value])=>Array.isArray(value)?sample.lamps.length===value.length&&value.every((on,i)=>sample.lamps[i]===on):sample[key]===value);
     const researchData={
       size:{
         book:"S. 40: Schatten verändern; S. 41, Aufgabe 2 als Vertiefung.",
-        steps:["Lies auf S. 40, wie die Stellung des Körpers den Schatten verändert. Zeige in der Buchskizze Lichtquelle, Körper und Wand.","Vermute zuerst. Stelle den Startaufbau ein: nur A, Punktquelle, Körperbreite 7 cm. Ziehe den Körper auf 24 cm, sichere eine Messung. Wiederhole bei 54 cm.","Finde durch Verschieben einen 18,5 cm breiten Schatten. Sichere ihn. Vergleiche deine Werte und zeichne zwei Randstrahlen für den größeren Schatten auf Papier."],
+        steps:["Vermute: Wird der Schatten größer, wenn der Körper zur Lampe rückt? Notiere deine Idee.","Tippe auf »Startaufbau einstellen«. Nur A ist an. Die Körperbreite bleibt bei 7 cm.","Ziehe den Körper auf 24 cm Abstand zur Lampe. Tippe auf »Messung sichern«. Wiederhole das bei 54 cm.","Suche durch Verschieben einen 18,5 cm breiten Schatten. Sichere auch diese Messung.","Vergleiche die drei Messungen. Zeichne den größten Schatten mit zwei Randstrahlen. Buchhilfe: S. 40."],
         preset:"sharp",
-        goal:"Nutze nur Punktquelle A und einen 7 cm breiten Körper. Vermute die Wirkung einer Abstandsänderung. Vergleiche 24 cm und 54 cm Abstand Lampe–Körper. Stelle danach einen genau 18,5 cm breiten Schatten her, ohne die Körperbreite zu ändern. Sichere alle drei Aufbauten als Messungen.",
-        question:"Bei 24 cm Abstand ist der Schatten 21,6 cm breit. Was erwartest du bei doppeltem Abstand (48 cm)?",
-        options:["43,2 cm: Die Schattenbreite verdoppelt sich mit dem Abstand.","10,8 cm: Bei festem Lampen–Wand-Abstand halbiert sich die Schattenbreite.","21,6 cm: Nur die Körperbreite bestimmt die Schattenbreite."],
+        goal:"Nur A, Körperbreite 7 cm: Vergleiche die Schatten bei 24 cm und 54 cm Körperabstand. Suche danach einen 18,5 cm breiten Schatten. Sichere alle drei Messungen.",
+        question:"Du schiebst den Körper näher zur Lampe. Was passiert mit dem Schatten?",
+        options:["Er wird kleiner.","Er wird größer.","Er bleibt gleich groß."],
         numbers:[["Schattenbreite bei 24 cm (in cm)",21.6,.15],["Schattenbreite bei 54 cm (in cm)",9.6,.15],["Abstand Lampe–Körper für 18,5 cm Schattenbreite (in cm)",28,0]],
-        setups:[{distance:24,size:7,source:0,gap:0,lamps:[true,false,false]},{distance:54,size:7,source:0,gap:0,lamps:[true,false,false]},{distance:28,size:7,source:0,gap:0,lamps:[true,false,false]}],
-        explain:"Begründe die Größenänderung mit den Randstrahlen. Erkläre außerdem, wie du den Zielaufbau gefunden hast.",
-        correct:"Bei festem Lampen–Wand-Abstand halbiert ein doppelter Abstand Lampe–Körper die Schattenbreite. Die Randstrahlen treffen näher beieinander auf.",
+        setups:[{distance:24,size:7,source:0,gap:0,lamps:[true,false]},{distance:54,size:7,source:0,gap:0,lamps:[true,false]},{distance:28,size:7,source:0,gap:0,lamps:[true,false]}],
+        explain:"Ergänze: »Je näher der Körper an der Lampe steht, desto …« Zeige den Grund mit zwei Randstrahlen in deiner Zeichnung.",
+        correct:"Näher an der Lampe wird der Schatten größer. Die Randstrahlen treffen auf der Wand weiter auseinander auf.",
         hint:"Vergleiche deine Messwerte. Die Wand bleibt bei 74 cm. Für eine Punktquelle gilt: Schattenbreite / Körperbreite = 74 cm / Abstand Lampe–Körper. Buch: S. 40 und S. 41, Aufgabe 2."
       },
       edge:{
         book:"S. 40, Bilder 2 und 3; S. 41, Aufgabe 3.",
-        steps:["Vergleiche die Schattenränder in den Bildern 2 und 3 auf S. 40. Beschreibe in eigenen Worten: scharf oder weich?","Stelle nur A, Körperbreite 7 cm und Abstand 32 cm ein. Miss zuerst mit einer Punktquelle, dann mit 6 cm Leuchtfläche. Ziehe den Griff »Fläche ↕« oder öffne »Genaue Werte«. Sichere beide Messungen.","Lass die Leuchtfläche unverändert und ziehe den Körper auf 54 cm. Sichere eine Messung. Beschreibe die Ränder und erkläre sie mit zwei Punkten der Lichtquelle."],
+        steps:["Vermute: Wie verändert eine größere Leuchtfläche den Schattenrand? Notiere deine Idee.","Tippe auf »Startaufbau einstellen«. Nur A ist an. Stelle die Leuchtfläche auf 0 cm. Sichere die Messung.","Ziehe den Griff »Leuchtfläche ↕« auf 6 cm. Lass den Körper stehen. Sichere erneut.","Ziehe den Körper auf 54 cm Abstand zur Lampe. Sichere die dritte Messung.","Vergleiche die Ränder: Wo sind sie scharf, wo weich? Zeichne Lichtwege von zwei Punkten der Leuchtfläche. Buchhilfe: S. 40."],
         preset:"soft",
-        goal:"Nutze nur A, Körperbreite 7 cm, Lampenabstand 0. Protokolliere bei 32 cm Abstand zuerst die Punktquelle (0 cm), dann die 6 cm große Quelle. Lass diese große Quelle an und schiebe den Körper auf 54 cm. Sichere auch diesen Aufbau. Die Anzeige addiert beide Übergangsbereiche.",
-        question:"Warum werden die Übergänge bei derselben großen Lichtquelle schmaler, wenn der Körper näher an die Wand kommt?",
-        options:["Der Körper fängt dort mehr Licht ab, deshalb entstehen keine versetzten Schatten mehr.","Der Weg hinter dem Körper ist kürzer. Die Randstrahlen verschiedener Quellpunkte treffen näher beieinander auf.","Die leuchtende Fläche wird beim Verschieben kleiner, obwohl der Regler unverändert bleibt."],
-        numbers:[["Breite eines Übergangsbereichs bei 32 cm und 6 cm Quellengröße (in cm)",7.9,.15],["Summe beider Übergangsbereiche bei 54 cm und 6 cm Quellengröße (in cm)",4.4,.15]],
-        setups:[{distance:32,size:7,source:0,gap:0,lamps:[true,false,false]},{distance:32,size:7,source:6,gap:0,lamps:[true,false,false]},{distance:54,size:7,source:6,gap:0,lamps:[true,false,false]}],
-        explain:"Erkläre mit zwei Punkten der leuchtenden Fläche, warum weiche Ränder entstehen und warum ihre Breite vom Körper–Wand-Abstand abhängt.",
-        correct:"Verschiedene Quellpunkte liefern versetzte Schatten. Auf dem kürzeren Weg zur Wand liegen ihre Randstrahl-Treffpunkte näher beieinander.",
-        hint:"Nutze S. 40, Bilder 2 und 3. Die Anzeige nennt die Summe der zwei symmetrischen Übergänge: Für einen Rand musst du sie halbieren. Vergleiche nur Aufbauten mit derselben Körperbreite."
+        goal:"Nur A, Körperbreite 7 cm: Vergleiche bei 32 cm Körperabstand die Leuchtflächen 0 cm und 6 cm. Schiebe den Körper dann auf 54 cm. Sichere alle drei Messungen.",
+        question:"Warum erzeugt eine große Leuchtfläche weichere Schattenränder?",
+        options:["Das Licht biegt im Modell um den Körper.","Verschiedene Punkte der Leuchtfläche erzeugen leicht versetzte Schatten.","Der Körper wird durchsichtig."],
+        numbers:[["Übergangsbereiche zusammen bei 32 cm Körperabstand und 6 cm Leuchtfläche (in cm)",15.8,.15],["Übergangsbereiche zusammen bei 54 cm Körperabstand und 6 cm Leuchtfläche (in cm)",4.4,.15]],
+        setups:[{distance:32,size:7,source:0,gap:0,lamps:[true,false]},{distance:32,size:7,source:6,gap:0,lamps:[true,false]},{distance:54,size:7,source:6,gap:0,lamps:[true,false]}],
+        explain:"Beschreibe den Unterschied zwischen kleiner und großer Leuchtfläche. Was siehst du, wenn der Körper näher an die Wand rückt?",
+        correct:"Die Schatten verschiedener Punkte der Leuchtfläche liegen leicht versetzt. Deshalb geht Hell allmählich in Dunkel über.",
+        hint:"Lies die Anzeige »Übergangsbereiche / Teilschatten« ab. Sie zählt beide weichen Ränder zusammen. Für die Messfragen musst du nicht halbieren. Buchhilfe: S. 40, Bilder 2 und 3."
       },
       core:{
         book:"S. 39, Bild 2 und Erklärung zu Kern- und Halbschatten.",
-        steps:["Suche im Buch auf S. 39, Bild 2 Kern- und Halbschatten. Erkläre deiner Partnerin oder deinem Partner den Unterschied.","Lade den Startaufbau mit A und B. Sichere eine Messung. Tippe im Wandbild auf einen dunklen und einen grauen Punkt. Lies: Welche Lampe erreicht ihn?","Tippe B aus und sichere den Aufbau. Untersuche die Punkte erneut. Zeichne für einen Halbschattenpunkt beide Lichtwege; markiere den blockierten Weg."],
+        steps:["Vermute: Warum ist die Mitte dunkler als die grauen Randbereiche? Notiere deine Idee.","Tippe auf »Startaufbau einstellen«. A und B sind an. Sichere die Messung.","Tippe im Wandbild auf einen ganz dunklen Punkt und dann auf einen grauen Punkt. Welche Lampe erreicht ihn?","Schalte B durch Antippen aus. Sichere eine zweite Messung. Untersuche die Punkte erneut.","Zeichne für einen grauen Punkt beide Lichtwege: einen freien und einen blockierten. Buchhilfe: S. 39, Bild 2."],
         preset:"overlap",
-        goal:"Nutze Punktquellen A und B, Abstand A–B 6 cm, Körperbreite 7 cm und Abstand Lampe–Körper 36 cm. Miss den Kernschatten. Schalte nur B aus und protokolliere die neue Schattenbreite. Untersuche getrennt einen Punkt, der von A blockiert wird, und einen, der von B blockiert wird.",
-        question:"Ein Punkt liegt im Halbschatten: A ist blockiert, B erreicht ihn. Was passiert, wenn nur B ausgeschaltet wird?",
-        options:["Er wird vollständig beleuchtet, weil nur noch eine Lampe an ist.","Er wird dunkel: Der einzige noch eingeschaltete Lichtweg von A ist blockiert.","Er bleibt gleich hell, denn Ort und Größe des Körpers bleiben unverändert."],
+        goal:"Starte mit A und B. Untersuche einen dunklen und einen grauen Wandpunkt. Schalte B aus und vergleiche. Sichere beide Messungen.",
+        question:"Wie viele Lampen beleuchten einen Punkt im Halbschatten, wenn A und B an sind?",
+        options:["Beide Lampen.","Genau eine Lampe.","Keine Lampe."],
         numbers:[["Kernschattenbreite mit A und B (in cm)",8.1,.15],["Schattenbreite mit nur A (in cm)",14.4,.15]],
-        setups:[{distance:36,size:7,source:0,gap:6,lamps:[true,true,false]},{distance:36,size:7,source:0,gap:6,lamps:[true,false,false]}],
-        explain:"Beschreibe die freien und blockierten Lichtwege für beide Halbschattenbereiche nach dem Ausschalten von B. Unterscheide Lichtanteil und tatsächliche Lichtmenge.",
-        correct:"Der Punkt wird dunkel. A erreicht ihn nicht; die einzige Lampe, die ihn vorher beleuchtet hat, ist jetzt aus.",
-        hint:"Verfolge beide Lichtwege einzeln (Buch S. 39, Bild 2). Der andere Halbschattenbereich, den A erreicht, bleibt beleuchtet. 100 % des Lichts einer eingeschalteten Lampe sind nicht mehr Licht als dieselbe Lampe vorher geliefert hat."
+        setups:[{distance:36,size:7,source:0,gap:6,lamps:[true,true]},{distance:36,size:7,source:0,gap:6,lamps:[true,false]}],
+        explain:"Erkläre mit deiner Zeichnung: Im Kernschatten kommt Licht von … Lampen an. Im Halbschatten kommt Licht von … Lampe an.",
+        correct:"Im Halbschatten erreicht genau eine Lampe den Punkt. Im Kernschatten sind beide Lichtwege blockiert.",
+        hint:"Tippe auf einen grauen Punkt im Wandbild. Lies für A und B ab: »blockiert« oder »erreicht den Punkt«. Buchhilfe: S. 39, Bild 2."
       },
       separate:{
         book:"S. 39, Bilder 1 und 2; Vergleich der Schattenüberlagerung.",
-        steps:["Vergleiche die Schattenbilder auf S. 39. Vermute: Haben zwei Lampen immer einen gemeinsamen ganz dunklen Bereich?","Lade den Startaufbau. Ziehe A nach oben oder B nach unten, ohne den Körper zu verändern. Suche die Stelle, an der zwischen den Schatten eine helle Lücke entsteht.","Stelle über »Genaue Werte« die letzten zwei benachbarten ganzzahligen Lampenabstände vor und nach dieser Grenze ein. Sichere beide. Vergrößere dann nur den Körper: Was passiert mit der Lücke?"],
+        steps:["Vermute: Gibt es bei zwei Lampen immer einen Kernschatten? Notiere deine Idee.","Tippe auf »Startaufbau einstellen«. Lass den Körper unverändert.","Ziehe A nach oben oder B nach unten. Beobachte, wann eine helle Lücke zwischen den Schatten entsteht.","Stelle den Abstand A–B auf 13 cm. Sichere die Messung. Wiederhole das bei 14 cm. Nutze bei Bedarf »Genaue Werte einstellen«.","Vergrößere jetzt nur die Körperbreite. Was passiert mit der Lücke? Zeichne deine Beobachtung. Buchhilfe: S. 39."],
         preset:"overlap",
-        goal:"Nutze zwei Punktquellen A und B, Körperbreite 7 cm und Abstand Lampe–Körper 36 cm. Suche den kleinsten ganzzahligen Abstand A–B mit einer hellen Lücke. Sichere den letzten ganzzahligen Abstand mit Überlappung und den ersten mit Lücke. Ändere sonst nichts. Prüfe anschließend die Fachfrage durch Vergrößern des Körpers.",
-        question:"Bei gleicher Lampenstellung vergrößerst du nur die Körperbreite. Was kann mit der hellen Lücke passieren?",
-        options:["Die einzelnen Schatten werden breiter; die Lücke kann sich schließen und Kernschatten entsteht wieder.","Die Lücke bleibt unverändert, weil nur der Lampenabstand sie festlegt.","Beide Schatten wandern ohne Breitenänderung zur Mitte."],
-        numbers:[["Kleinster ganzzahliger Abstand A–B mit heller Lücke (in cm)",14,0]],
-        setups:[{distance:36,size:7,source:0,gap:13,lamps:[true,true,false]},{distance:36,size:7,source:0,gap:14,lamps:[true,true,false]}],
-        explain:"Begründe die gefundene Grenze mit den Messungen unmittelbar davor und danach. Erkläre mit Randstrahlen, warum eine größere Körperbreite die Lücke schließen kann.",
+        goal:"Starte mit A und B. Verändere nur den Lampenabstand. Sichere Messungen bei 13 cm und 14 cm. Vergrößere danach den Körper und beobachte die Lücke.",
+        question:"Du machst den Körper breiter. Was kann mit der hellen Lücke passieren?",
+        options:["Die Schatten werden breiter und können die Lücke schließen.","Die Lücke bleibt immer gleich.","Die Schatten verschwinden."],
+        numbers:[["Bei welchem getesteten Abstand A–B siehst du eine helle Lücke: 13 oder 14 cm?",14,0]],
+        setups:[{distance:36,size:7,source:0,gap:13,lamps:[true,true]},{distance:36,size:7,source:0,gap:14,lamps:[true,true]}],
+        explain:"Vergleiche 13 cm und 14 cm Lampenabstand. Beschreibe danach, wie ein breiterer Körper die helle Lücke verändert.",
         correct:"Ein breiterer Körper erzeugt breitere Einzelschatten. Sie können wieder überlappen: In der gemeinsamen Fläche sind beide Lichtwege blockiert.",
         hint:"Buch S. 39, Bilder 1 und 2. Verändere den Lampenabstand in 1-cm-Schritten nahe an der Grenze. Kernschattenbreite 0 allein beweist noch keine Lücke: Beim bloßen Berühren gibt es ebenfalls keine dunkle Überlappungsfläche."
       },
-      three:{
-        book:"S. 39, Aufgabe 3: eigene Randstrahlskizze mit drei Quellen.",
-        steps:["Lies S. 39, Aufgabe 3. Vermute, welche hellen und dunklen Bereiche drei Lampen erzeugen können.","Lade den Startaufbau. Tippe im Wandbild auf verschieden helle Stellen. Zähle die freien Lichtwege und die Helligkeitsstufen. Sichere den Aufbau.","Tippe C aus. Sichere erneut und vergleiche die Helligkeitsstufen. Zeichne auf Papier einen Teilschattenpunkt und die drei Lichtwege wie im Buch."],
-        preset:"three",
-        goal:"Nutze drei gleich helle Punktquellen, Abstand A–B 12 cm, Körperbreite 7 cm und Abstand Lampe–Körper 36 cm. Zähle alle Helligkeitsstufen einschließlich ganz dunkel und vollständig beleuchtet. Sichere diesen Aufbau und einen zweiten mit nur C ausgeschaltet. Zeichne für einen Teilschattenpunkt freie und blockierte Lichtwege.",
-        question:"Von drei gleich hellen Lampen erreichen A und C einen Wandpunkt; B ist blockiert. C wird ausgeschaltet. Wie viele eingeschaltete Lampen erreichen den Punkt jetzt?",
-        options:["Zwei von drei: Ausgeschaltete Lampen werden weiterhin als Lichtwege mitgezählt.","Eine von zwei: Nur A erreicht den Punkt; B ist weiterhin blockiert.","Keine: Wenn C aus ist, entsteht an jedem Punkt Kernschatten."],
-        numbers:[["Anzahl der Helligkeitsstufen mit A, B und C",4,0],["Anzahl der Helligkeitsstufen mit nur A und B",3,0]],
-        setups:[{distance:36,size:7,source:0,gap:12,lamps:[true,true,true]},{distance:36,size:7,source:0,gap:12,lamps:[true,true,false]}],
-        explain:"Ordne jeder Stufe die Zahl freier Lichtwege zu. Erkläre, warum Teilschatten nicht immer halbe Helligkeit bedeutet. Ergänze eine Randstrahlskizze im Heft oder auf dem Arbeitsblatt.",
-        correct:"Zunächst sind zwei von drei Lichtwegen frei, danach einer von zwei. Der Lichtanteil sinkt von 2/3 auf 1/2; die tatsächliche Lichtmenge am Punkt sinkt ebenfalls.",
-        hint:"Zähle nur eingeschaltete Lampen. Bei drei Lampen sind 0, 1/3, 2/3 und 1 möglich, bei zwei Lampen 0, 1/2 und 1. Diese Anteile gelten für gleich helle Lampen im Modell (Buch S. 39, Aufgabe 3)."
+      brightness:{
+        book:"S. 39, Bild 2: Kernschatten, Halbschatten und beleuchtete Wand.",
+        steps:["Vermute: Wie viele Helligkeitsstufen erzeugen zwei gleich helle Lampen? Notiere deine Idee.","Tippe auf »Startaufbau einstellen«. A und B sind an. Sichere die Messung.","Suche im Wandbild einen dunklen, einen grauen und einen hellen Punkt. Zähle jeweils die freien Lichtwege.","Schalte B aus. Sichere erneut. Zähle die Helligkeitsstufen jetzt.","Zeichne die drei Bereiche des Versuchs mit zwei Lampen. Beschrifte sie: Kernschatten, Halbschatten, beleuchtete Wand."],
+        preset:"overlap",
+        goal:"Vergleiche die Helligkeitsstufen mit zwei Lampen und mit einer Lampe. Sichere beide Aufbauten.",
+        question:"Ein Punkt wird von A und B beleuchtet. Wie heißt dieser Bereich?",
+        options:["Kernschatten.","Vollständig beleuchteter Bereich.","Halbschatten."],
+        numbers:[["Anzahl der Helligkeitsstufen mit A und B (dunkel mitzählen)",3,0],["Anzahl der Helligkeitsstufen mit nur A (dunkel mitzählen)",2,0]],
+        setups:[{distance:36,size:7,source:0,gap:6,lamps:[true,true]},{distance:36,size:7,source:0,gap:6,lamps:[true,false]}],
+        explain:"Ordne zu: Kein freier Lichtweg → …; ein freier Lichtweg → …; zwei freie Lichtwege → … . Beide Lampen sind dabei eingeschaltet.",
+        correct:"Beide Lichtwege sind frei: Der Punkt ist vollständig beleuchtet. Ein freier Weg ergibt Halbschatten; kein freier Weg ergibt Kernschatten.",
+        hint:"Zähle beim Aufbau mit zwei Punktquellen: dunkel, grau, hell. Bei nur einer Punktquelle gibt es dunkel und hell."
       },
       desk:{
         book:"S. 41, Bilder 4 und 5 sowie Aufgabe 4: Schatten beim Schreiben.",
-        steps:["Betrachte die Schreibtischbilder auf S. 41. Zeige, wann die Schreibhand den Lichtweg zur Schrift versperrt.","Zeichne je einen günstigen Aufbau für eine rechts- und eine linkshändige Person. Beschrifte Lichtquelle, Hand, Papier und Lichtweg.","Prüfe am Labor, was eine größere Leuchtfläche verändert. Begründe: Warum ist ein weicher Schattenrand nicht dasselbe wie eine unbeschattete Schrift?"],
-        goal:"Plane eine Schreibtischbeleuchtung für eine rechts- und eine linkshändige Person. Zeichne jeweils Lampe, Hand, Schrift und einen Lichtweg auf Papier. Begründe die Lampenposition. Untersuche am Labor zusätzlich den Unterschied zwischen einer größeren Lichtquelle und einer veränderten Körperposition.",
-        question:"Eine rechtshändige Person schreibt unter einer kleinen Lampe rechts. Welche Änderung behebt am zuverlässigsten den störenden Handschatten auf der Schrift?",
-        options:["Rechts eine hellere Punktquelle einsetzen: Helleres Licht dringt durch die Hand.","Die Lampe links platzieren, sodass die Schreibhand möglichst nicht zwischen Lichtquelle und Schrift liegt.","Rechts eine größere Lichtquelle einsetzen: Weichere Ränder garantieren, dass die Schrift nicht mehr abgeschattet ist."],
+        steps:["Vermute: Auf welcher Seite sollte die Lampe beim Schreiben stehen? Notiere deine Idee.","Sieh dir die Schreibtischbilder auf S. 41 an. Wann liegt die Hand zwischen Lampe und Schrift?","Zeichne einen guten Aufbau für eine rechtshändige Person. Zeichne dann einen für eine linkshändige Person.","Beschrifte Lampe, Hand und Papier. Zeichne jeweils einen freien Lichtweg zur Schrift.","Erkläre: Warum hilft die Lampenposition mehr als nur eine hellere Lampe?"],
+        goal:"Zeichne eine gute Lampenposition für Rechtshändige und eine für Linkshändige. Zeige jeweils einen freien Lichtweg zur Schrift.",
+        question:"Du schreibst mit rechts. Von welcher Seite sollte das Licht möglichst kommen?",
+        options:["Von rechts, direkt hinter der Schreibhand.","Von links, gegenüber der Schreibhand.","Die Seite spielt keine Rolle."],
         numbers:[],setups:[],
-        explain:"Beschreibe beide Lampenpositionen und ihre Lichtwege. Widerlege die Aussage: »Eine größere Lichtquelle beseitigt jeden Schatten.« Nutze deine Skizzen und einen Vergleich mit Punktquelle und großer Quelle.",
+        explain:"Beschreibe deine beiden Zeichnungen. Erkläre, warum die Hand den Lichtweg zur Schrift möglichst nicht versperren soll.",
         correct:"Licht von der Gegenseite der Schreibhand ist günstig. Eine größere Lichtquelle macht Ränder weicher, verhindert aber nicht automatisch die Abschattung der Schrift.",
         hint:"Buch S. 41, Bilder 4 und 5 und Aufgabe 4. Prüfe den Weg Lampe → Schrift. Bei Linkshändigen vertauschst du die Seiten. Verwechsle weichere Ränder nicht mit fehlendem Schatten."
       }
@@ -698,7 +703,7 @@
       const written=document.createElement("div");
       written.innerHTML=data.numbers.map(([label],i)=>`<label class="protocol-label" for="number-${id}-${i}">Messfrage ${i+1} · ${label}</label><input type="number" id="number-${id}-${i}" step="any" min="0" inputmode="decimal">`).join("")+`<label class="protocol-label" for="explanation-${id}">Beobachten und begründen</label><p class="small">${data.explain}</p><div class="digital-writing"><textarea id="explanation-${id}" minlength="40" placeholder="Ich habe … verändert. Dabei … beobachtet. Das lässt sich mit den Lichtwegen so erklären: …"></textarea></div><label class="paper-writing"><input type="checkbox" id="paper-explanation-${id}"> Ich habe Beobachtung, Erklärung und verlangte Skizze auf Papier bearbeitet.</label>`;
       card.querySelector("[data-check]").before(written);
-      card.querySelector("[data-check]").textContent="Auftrag und Messprotokoll prüfen";
+      card.querySelector("[data-check]").textContent="Meine Ergebnisse prüfen";
       card.querySelector("details p").textContent=data.hint;
       card.querySelector(".book").textContent=data.book;
       card.addEventListener("input",()=>{solved.delete(id);updateProgress();card.querySelector(".feedback").textContent="";});
@@ -755,7 +760,7 @@
       for(const [i,sample] of measurements.entries()) {
         const row=document.createElement("div");row.className="measurement";
         const cm=value=>value.toLocaleString("de-DE",{maximumFractionDigits:1})+" cm";
-        row.textContent=`${i+1}. Lampen ${sample.lamps.map((on,j)=>on?"ABC"[j]:"").join("")||"alle aus"} · Körperabstand ${cm(sample.distance)} · Körperbreite ${cm(sample.size)} · A–B ${cm(sample.gap)} · Quelle ${cm(sample.source)} → Schatten ${cm(sample.total)}, Kern ${cm(sample.core)}, Übergänge/Teilschatten zusammen ${cm(sample.partial)}.`;
+        row.textContent=`${i+1}. Lampen ${sample.lamps.map((on,j)=>on?"AB"[j]:"").join("")||"alle aus"} · Körperabstand ${cm(sample.distance)} · Körperbreite ${cm(sample.size)} · A–B ${cm(sample.gap)} · Quelle ${cm(sample.source)} → Schatten ${cm(sample.total)}, Kern ${cm(sample.core)}, Übergänge/Teilschatten zusammen ${cm(sample.partial)}.`;
         container.append(row);
       }
     }

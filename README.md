@@ -5,10 +5,12 @@ Interaktives Physik-Experimentierlabor zu Lichtausbreitung, Schattenbild, Kern- 
 ## Erkunden und forschen
 
 - Comic-Darstellungen von Taschenlampe, Karton, Wand und Lichtweg den Zeichen zuordnen
+- Genau zwei Lichtquellen A und B; Start mit Kern- und Halbschatten
+- Sichtbare Pfeile und Beschriftungen an allen Ziehgriffen: Lampenabstand, Körperposition, Körperbreite und Leuchtfläche
 - Lampen direkt im Bild antippen; Lichtquellen und Körper durch Ziehen verändern
 - Sichtbare Abstände und Größen; genaue Einstellungen bei Bedarf einblenden
 - Wandpunkte antippen und freie oder blockierte Lichtwege untersuchen
-- Sechs mehrteilige Forscheraufträge mit Experimenten, gesicherten Messungen und Zeichenaufträgen
+- Sechs Forscheraufträge mit kurzen Einzelschritten, gesicherten Messungen und Zeichenaufträgen; Helligkeitsvergleich mit zwei Lampen statt drei Quellen
 - Vermutungen und Erklärungen wahlweise auf Papier bearbeiten; freie Texte werden nicht automatisch fachlich bewertet
 - Ergebnisse als Heftbild sichern und Arbeitsblätter drucken
 
