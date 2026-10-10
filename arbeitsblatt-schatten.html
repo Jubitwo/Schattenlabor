@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Arbeitsblatt · Licht und Schatten</title>
+  <style>
+    *{box-sizing:border-box}
+    body{margin:0;background:#edf1f4;color:#172c3e;font:11pt/1.45 system-ui,-apple-system,"Segoe UI",sans-serif}
+    .toolbar{max-width:850px;margin:24px auto;padding:0 20px}
+    .toolbar h1{font-size:1.5rem;margin:0 0 8px}.toolbar p{margin:8px 0}
+    button,.toolbar a{display:inline-block;font:inherit;font-weight:700;padding:10px 16px;border-radius:10px;margin:5px 8px 5px 0}
+    button{border:0;background:#086c75;color:white;cursor:pointer}.toolbar a{color:#086c75;border:1px solid #9db9bf;text-decoration:none}
+    button:focus-visible,a:focus-visible{outline:3px solid #c37900;outline-offset:3px}
+    .page{width:210mm;min-height:297mm;margin:20px auto;background:white;padding:14mm;box-shadow:0 3px 18px #172c3e18;display:flex;flex-direction:column}
+    .page-header{border-bottom:2px solid #086c75;padding-bottom:8px;margin-bottom:10px}
+    .kicker{font-size:8pt;letter-spacing:.1em;text-transform:uppercase;font-weight:800;color:#456174}
+    h2{font-size:19pt;line-height:1.2;margin:5px 0 9px}h3{font-size:12pt;line-height:1.3;margin:12px 0 5px}
+    p{margin:6px 0}.identity{display:flex;gap:18px;font-size:9pt}.identity span:first-child{flex:1}
+    .blank{display:inline-block;border-bottom:1px solid #6a7f8d;min-width:26mm;height:5mm}
+    .identity span:first-child .blank{width:65%}
+    .book{font-size:8.5pt;color:#506578;margin-bottom:6px}
+    .help{background:#f0f5f6;border-left:3px solid #587c85;padding:8px 12px;font-size:9pt;margin:9px 0}
+    .help strong{font-weight:750}
+    .lines{height:21mm;background:repeating-linear-gradient(to bottom,transparent 0,transparent calc(7mm - 1px),#b9c5ce calc(7mm - 1px),#b9c5ce 7mm);margin:0 0 5px}
+    .lines.two{height:14mm}.lines.four{height:28mm}.lines.five{height:35mm}
+    .prompt{font-size:10pt;margin-top:6px}
+    table{width:100%;border-collapse:collapse;font-size:9.5pt;margin:8px 0}
+    th,td{border:1px solid #9dafbc;padding:7px 9px;text-align:left}
+    th{background:#f3f6f8;font-weight:700}td{height:11mm}
+    .narrow td{height:9mm}
+    .check-row{display:flex;gap:16px;flex-wrap:wrap;margin:7px 0;font-size:10pt}
+    .box{display:inline-block;width:3.5mm;height:3.5mm;border:1px solid #667a89;vertical-align:-.4mm;margin-right:5px}
+    ol,ul{padding-left:20px;margin:6px 0}li{margin:3px 0}
+    .drawing{border:1px solid #8da3b2;border-radius:4px;width:100%;height:auto;display:block;margin:10px 0}
+    .drawing text{font-family:system-ui,sans-serif}
+    .draw-instructions{font-size:10pt}
+    .words{border:1px solid #b2c2cc;padding:7px 10px;font-size:9pt;margin:8px 0}
+    .merksatz-title{font-size:10pt;font-weight:750;margin-top:10px}
+    .footer{display:flex;justify-content:space-between;gap:12px;border-top:1px solid #b2c2cc;margin-top:auto;padding-top:6px;font-size:8pt;color:#506578}
+    .finish{font-size:9pt;margin:12px 0}
+    @media screen and (max-width:820px){.page{width:calc(100% - 24px);min-height:0;padding:22px;margin:16px 12px}.identity{flex-wrap:wrap}.identity span:first-child .blank{width:45mm}.footer{margin-top:20px}h2{font-size:1.4rem}.table-wrap{overflow-x:auto}}
+    @media print{
+      @page{size:A4 portrait;margin:14mm}
+      body{background:white;color:#000;font-size:10pt;line-height:1.25}
+      .toolbar{display:none}
+      .page{width:182mm;min-height:269mm;margin:0;padding:0;box-shadow:none;break-after:page}
+      .page:last-child{break-after:auto}
+      .page-header{border-color:#333}.kicker,.book,.footer{color:#333}
+      .page-header{padding-bottom:5px;margin-bottom:6px}
+      h2{font-size:17pt;margin:4px 0 6px}h3{font-size:11pt;margin:8px 0 3px}
+      p{margin:3px 0}.book{margin-bottom:3px}
+      .help{padding:6px 9px;margin:6px 0;font-size:9pt}
+      table{margin:4px 0}th,td{padding:4px 7px}td{height:10mm}.narrow td{height:8mm}
+      .drawing{height:65mm;margin:7px 0}
+      .words{margin:5px 0;padding:5px 8px}.draw-instructions{font-size:9.5pt}
+      ol{margin:4px 0}li{margin:2px 0}
+      .finish{margin:7px 0}.merksatz-title{margin-top:7px}
+      .help,th{background:none}.help{border:1px solid #888;border-left:3px solid #555}
+      h3,table,.drawing,.words,.lines{break-inside:avoid}
+      a{color:#000}
+    }
+  </style>
+</head>
+<body>
+  <div class="toolbar">
+    <h1>Arbeitsblattvorlage · Licht und Schatten</h1>
+    <p>Fünf A4-Seiten zum Ausfüllen und Zeichnen auf Papier. Sie ersetzen die schriftlichen Heftaufgaben aus dem Schattenlabor. Die ersten drei Seiten begleiten die Experimente; die letzten beiden sichern Zeichnungen und Merksätze. Die vertieften digitalen Forscheraufträge ergänzen diese Vorlage: Übertrage zusätzliche Messwerte und Begründungen bei Bedarf auf die Rückseiten. Auftrag und Simulation sind dort gemeinsam zugänglich.</p>
+    <button id="print">Arbeitsblätter drucken / als PDF speichern</button>
+    <a href="./index.html">Zum interaktiven Schattenlabor</a>
+    <p><small>iPad-Bedienung: Lampen im Bild antippen, den Körper waagerecht ziehen und mit dem orangefarbenen Griff vergrößern. A/B senkrecht ziehen zum Ändern des Lampenabstands. „Fläche ↕“ verändert die leuchtende Fläche. Abstände bleiben sichtbar; „Genaue Werte einstellen“ öffnet die Regler. Vermutungen und Erklärungen können auf Papier bleiben. Tippe ins Wandbild, um freie und blockierte Lichtwege zu prüfen.</small></p>
+    <p><small>Drucke auf A4 im Hochformat, Skalierung 100 %, ohne Browser-Kopf- und Fußzeilen. Die Vorlage enthält Hilfen, aber keine ausgefüllten Lösungen. Für die Merksätze darf die Station „Dein Heftbild“ genutzt werden.</small></p>
+  </div>
+  <main>
+    <section class="page" aria-labelledby="page-one">
+      <div class="page-header">
+        <div class="kicker">Schattenlabor · Forschen und dokumentieren</div>
+        <h2 id="page-one">1 · Größe und Schattenrand</h2>
+        <div class="identity"><span>Name: <i class="blank"></i></span><span>Klasse: <i class="blank"></i></span><span>Datum: <i class="blank"></i></span></div>
+      </div>
+      <div class="help"><strong>Arbeitsweise:</strong> Ordne zuerst die Comicbilder den Zeichen zu. Unter „Forscheraufträge“ stehen Buchauftrag und Versuch zusammen. Ziehe die Elemente direkt im Bild; genaue Werte: Regler öffnen. Vermute auf Papier, miss und sichere. Begründe mit Lichtwegen. Zusatzfragen: Rückseiten nutzen. Hilfe: Buch und HTML. Material: Bleistift, Lineal.</div>
+      <h3>Auftrag 1 · Wie wird der Schatten größer?</h3>
+      <p class="book">Buch: S. 40, Schatten verändern · S. 41, Aufgabe 2.</p>
+      <p>Wähle „Ein scharfer Schatten“. Nur A ist an, Körperbreite 7 cm, Lampenabstand 0, Lichtquellengröße 0. Die Wand bleibt fest.</p>
+      <p class="prompt"><strong>Meine Vermutung:</strong> Wird der Schatten größer, wenn der Körper näher zur Lampe oder näher zur Wand kommt?</p>
+      <div class="lines two"></div>
+      <table aria-label="Messwerte zur Schattenbreite">
+        <thead><tr><th>Abstand Lampe–Körper</th><th>Schattenbreite laut Labor</th></tr></thead>
+        <tbody><tr><td>24 cm</td><td>________________ cm</td></tr><tr><td>54 cm</td><td>________________ cm</td></tr></tbody>
+      </table>
+      <p class="prompt"><strong>Meine Erklärung:</strong> „Wenn der Körper …, wird der Schatten …, weil die Randstrahlen …“</p>
+      <div class="lines"></div>
+      <h3>Auftrag 2 · Scharf oder diffus?</h3>
+      <p class="book">Buch: S. 40, Bilder 2 und 3 · S. 41, Aufgabe 3.</p>
+      <p>Wähle „Weiche Ränder“. Nur A ist an. Lass Körperposition und Körperbreite unverändert. Vergleiche die Lichtquellengrößen 0 cm und 6 cm. <strong>Diffus</strong> bedeutet hier: mit weichen, unscharfen Übergängen.</p>
+      <table class="narrow" aria-label="Vergleich der Schattenränder"><thead><tr><th>Leuchtende Fläche</th><th>So sieht der Schattenrand aus</th></tr></thead><tbody><tr><td>Punktquelle · 0 cm</td><td></td></tr><tr><td>Ausgedehnte Quelle · 6 cm</td><td></td></tr></tbody></table>
+      <p class="prompt"><strong>Warum verändert sich der Rand?</strong> Denke an verschiedene Punkte der leuchtenden Fläche.</p>
+      <div class="lines"></div>
+      <p class="prompt"><strong>Zusatz:</strong> Lass die große Lichtquelle an und schiebe den Körper näher zur Wand. Was passiert mit dem Übergang?</p>
+      <div class="lines two"></div>
+      <div class="footer"><span>Licht und Schatten · Buchseiten 39–41</span><span>Arbeitsblatt 1 / 5</span></div>
+    </section>
+
+    <section class="page" aria-labelledby="page-two">
+      <div class="page-header"><div class="kicker">Schattenlabor · Mehrere Lichtquellen</div><h2 id="page-two">2 · Wer beleuchtet die Wand?</h2><div class="identity"><span>Name: <i class="blank"></i></span></div></div>
+      <h3>Auftrag 3 · Kern- und Halbschatten</h3>
+      <p class="book">Buch: S. 39, Bild 2 und Erklärung der überlagerten Schatten.</p>
+      <p>Wähle „Kern- und Halbschatten“. A und B sind an, C ist aus. Schalte A und B danach einzeln aus und wieder ein. Untersuche, welche Lichtwege frei sind.</p>
+      <table aria-label="Beleuchtung bei zwei Lampen">
+        <thead><tr><th>Wandbereich</th><th>Welche Lampe erreicht ihn?<br>A / B / beide / keine</th><th>Wie hell erscheint er?</th></tr></thead>
+        <tbody><tr><td>Kernschatten</td><td></td><td></td></tr><tr><td>Oberer Halbschatten<br>in der Draufsicht</td><td></td><td></td></tr><tr><td>Unterer Halbschatten<br>in der Draufsicht</td><td></td><td></td></tr><tr><td>Außerhalb der Schatten</td><td></td><td></td></tr></tbody>
+      </table>
+      <p class="prompt"><strong>Erkläre den Unterschied zwischen Kern- und Halbschatten:</strong></p>
+      <div class="lines two"></div>
+      <div class="help"><strong>Zeichenhilfe:</strong> Im Wandausschnitt von vorn entspricht links dem oberen Bereich der Draufsicht. Prüfe für jede Lampe einzeln, ob der Körper ihren Lichtweg blockiert.</div>
+      <h3>Auftrag 4 · Können sich Schatten trennen?</h3>
+      <p class="book">Buch: S. 39, Bilder 1 und 2; Aufgabe 2 als Ergänzung.</p>
+      <p>Wähle erneut „Kern- und Halbschatten“. Ändere nur den Abstand A–B auf 0 cm, 6 cm und 18 cm. Lichtquellen bleiben punktförmig.</p>
+      <table class="narrow" aria-label="Überlagerung bei verschiedenen Lampenabständen"><thead><tr><th>Abstand A–B</th><th>So liegen die Schatten / Gibt es Kernschatten?</th></tr></thead><tbody><tr><td>0 cm</td><td></td></tr><tr><td>6 cm</td><td></td></tr><tr><td>18 cm</td><td></td></tr></tbody></table>
+      <p class="prompt"><strong>Was kannst du über einen hellen Bereich zwischen getrennten Schatten sagen?</strong></p>
+      <div class="lines two"></div>
+      <h3>Auftrag 5 · Drei Lampen und Teilschatten</h3>
+      <p class="book">Buch: S. 39, Aufgabe 3. Optional: eigene Skizze auf der Rückseite.</p>
+      <p>Wähle „Drei Lampen“. Ein Wandpunkt erhält Licht von zwei der drei Lampen. Wie heißt der Bereich? Warum ist „halb so hell“ nicht immer passend?</p>
+      <div class="lines"></div>
+      <div class="footer"><span>Licht und Schatten · Drei gleich helle Lampen im Modell</span><span>Arbeitsblatt 2 / 5</span></div>
+    </section>
+
+    <section class="page" aria-labelledby="page-three">
+      <div class="page-header"><div class="kicker">Schattenlabor · Alltag und eigene Versuche</div><h2 id="page-three">3 · Meine Forschungsergebnisse</h2><div class="identity"><span>Name: <i class="blank"></i></span></div></div>
+      <h3>Auftrag 6 · Schatten beim Schreiben</h3>
+      <p class="book">Buch: S. 41, Bilder 4 und 5 sowie Aufgabe 4.</p>
+      <div class="check-row"><span>Ich schreibe mit: <i class="box"></i> rechts</span><span><i class="box"></i> links</span></div>
+      <p class="prompt"><strong>Wo sollte meine Schreibtischlampe stehen? Begründe mit dem Lichtweg.</strong></p>
+      <div class="lines two"></div>
+      <p class="prompt"><strong>Wie könnten größere Lichtquellen im Klassenraum störende Schatten verändern?</strong></p>
+      <div class="lines two"></div>
+      <h3>Mitmachversuch · Meine Handschattenfigur</h3>
+      <p>Nutze die HTML-Anleitung „Handschatten“. Wähle eine Figur. Halte das Handylicht fest und verändere nur den Abstand deiner Hände.</p>
+      <div class="check-row"><span>Meine Figur: <i class="box"></i> Hase</span><span><i class="box"></i> Vogel</span><span><i class="box"></i> Hund</span></div>
+      <table aria-label="Handschatten beobachten"><thead><tr><th>Stellung der Hände</th><th>Größe des Schattens</th><th>Schärfe des Randes</th></tr></thead><tbody><tr><td>Näher zur Lampe</td><td></td><td></td></tr><tr><td>Näher zur Wand</td><td></td><td></td></tr></tbody></table>
+      <div class="help"><strong>Sicher arbeiten:</strong> Nicht in die LED schauen oder in Augen leuchten. Handy stabil aufstellen, Wege freihalten. Kein Laser, keine Kerzen. Bei einem warmen Gerät Pause machen. Ohne Handy: Führe denselben Abstandsvergleich im Labor mit einer ausgedehnten Lichtquelle durch.</div>
+      <h3>Erklären statt nur anklicken · Zwei Experimente</h3>
+      <p>Wähle zwei deiner Versuche. Nutze Beobachtung und Erklärung aus den Arbeitsblättern. Schreibe jeweils drei zusammenhängende Sätze.</p>
+      <p class="prompt"><strong>Experiment 1:</strong> <span class="blank" style="width:65%"></span></p>
+      <p class="book">Ich habe … verändert. Dabei habe ich … beobachtet. Das liegt daran, dass …</p>
+      <div class="lines"></div>
+      <p class="prompt"><strong>Experiment 2:</strong> <span class="blank" style="width:65%"></span></p>
+      <p class="book">Ich habe … verändert. Dabei habe ich … beobachtet. Das liegt daran, dass …</p>
+      <div class="lines"></div>
+      <p class="finish"><i class="box"></i> Ich habe meine sechs Antworten in der HTML geprüft und nötige Verbesserungen auf dem Arbeitsblatt ergänzt.</p>
+      <div class="footer"><span>Licht und Schatten · Beobachten und begründen</span><span>Arbeitsblatt 3 / 5</span></div>
+    </section>
+
+    <section class="page" aria-labelledby="page-four">
+      <div class="page-header"><div class="kicker">Schattenlabor · Ergebnissicherung statt Heftbild</div><h2 id="page-four">4 · Zeichnung: Ein Schatten entsteht</h2><div class="identity"><span>Name: <i class="blank"></i></span></div></div>
+      <p class="book">Buch: S. 40, Bild 1 · S. 41, Aufgabe 1. HTML: Station „Dein Heftbild“, Zeichnung A.</p>
+      <p>Vervollständige den vorbereiteten Aufbau mit Lineal und Bleistift. Die kurzen Striche zeigen den Körper und die Wand in der Draufsicht.</p>
+      <ol class="draw-instructions">
+        <li>Zeichne von der Lampenmitte eine Gerade an der <strong>oberen Körperkante</strong> vorbei bis zur Wand.</li>
+        <li>Zeichne genauso den zweiten Randstrahl an der <strong>unteren Körperkante</strong> vorbei. Ergänze Pfeile in Ausbreitungsrichtung.</li>
+        <li>Schraffiere den Schattenraum <strong>hinter</strong> dem Körper zwischen den Randstrahlen.</li>
+        <li>Markiere das Schattenbild auf der Wand und beschrifte alle fünf Begriffe aus dem Wortkasten. Nutze freie Flächen für Beschriftungen und Hinweislinien.</li>
+      </ol>
+      <svg class="drawing" viewBox="0 0 800 360" role="img" aria-label="Unvollständige Zeichenvorlage: Punktquelle bei x 80, Körper bei x 310 und Wand bei x 690. Randstrahlen und Schatten sind selbst einzuzeichnen.">
+        <circle cx="80" cy="180" r="7" fill="white" stroke="#172c3e" stroke-width="2"/><circle cx="80" cy="180" r="2" fill="#172c3e"/>
+        <path d="M310 150V210" stroke="#172c3e" stroke-width="7"/>
+        <path d="M690 38V322" stroke="#758896" stroke-width="4"/>
+        <text x="55" y="346" font-size="12" fill="#536979">Draufsicht · Randstrahlen noch ergänzen</text>
+      </svg>
+      <div class="words"><strong>Beschriftungen:</strong> punktförmige Lichtquelle · lichtundurchlässiger Körper · Randstrahlen · Schattenraum · Schattenbild</div>
+      <div class="merksatz-title">Merksatz 1 · Entstehung</div>
+      <p>Erkläre in 2–3 Sätzen, warum ein Schatten entsteht. Unterscheide Schattenraum und Schattenbild. Du darfst Merksatz 1 aus der HTML übernehmen.</p>
+      <div class="lines four"></div>
+      <div class="merksatz-title">Merksatz 2 · Größe und Schattenrand</div>
+      <p>Notiere den Zusammenhang zwischen Abstand und Größe sowie zwischen Lichtquellengröße und Randschärfe. Nutze Merksatz 2 aus der HTML.</p>
+      <div class="lines four"></div>
+      <div class="help"><strong>Selbstkontrolle:</strong> Die Randstrahlen müssen an den Körperkanten vorbei bis zur Wand verlaufen. Nur der Bereich hinter dem Körper wird schraffiert. Schattenraum ist ein Bereich im Raum; Schattenbild liegt auf der Wand.</div>
+      <p class="finish"><i class="box"></i> Zwei gerade Randstrahlen <i class="box"></i> fünf Begriffe <i class="box"></i> Schattenbild auf der Wand <i class="box"></i> zwei Merksätze</p>
+      <div class="footer"><span>Licht und Schatten · Diese Seite ersetzt Heftzeichnung A</span><span>Arbeitsblatt 4 / 5</span></div>
+    </section>
+
+    <section class="page" aria-labelledby="page-five">
+      <div class="page-header"><div class="kicker">Schattenlabor · Ergebnissicherung statt Heftbild</div><h2 id="page-five">5 · Zeichnung: Zwei Lichtquellen</h2><div class="identity"><span>Name: <i class="blank"></i></span></div></div>
+      <p class="book">Buch: S. 39, Bilder 2 und 3. HTML: Station „Dein Heftbild“, Zeichnung B.</p>
+      <p>Zeichne mit Lineal. Nutze zwei Farben oder zwei Linienarten: eine für A und eine für B. Der vorbereitete Aufbau erzeugt überlappende Schatten.</p>
+      <ol class="draw-instructions">
+        <li>Zeichne von <strong>A</strong> zwei Randstrahlen an den beiden Körperkanten vorbei bis zur Wand.</li>
+        <li>Zeichne von <strong>B</strong> genauso zwei Randstrahlen. Insgesamt sind es vier Geraden.</li>
+        <li>Markiere die einzelnen Schattenräume leicht. Schraffiere ihre gemeinsame Überlappung stärker: den Kernschatten.</li>
+        <li>Beschrifte an der Wand <strong>Halbschatten – Kernschatten – Halbschatten</strong>. Notiere neben jedem Bereich, ob Licht von A, von B oder von keiner Lampe ankommt.</li>
+      </ol>
+      <svg class="drawing" viewBox="0 0 800 360" role="img" aria-label="Unvollständige Zeichenvorlage mit den Punktquellen A und B, einem Körper und einer Wand. Vier Randstrahlen sowie Kern- und Halbschatten sind zu ergänzen.">
+        <circle cx="80" cy="155" r="7" fill="white" stroke="#172c3e" stroke-width="2"/><circle cx="80" cy="155" r="2" fill="#172c3e"/>
+        <circle cx="80" cy="205" r="7" fill="white" stroke="#172c3e" stroke-width="2"/><circle cx="80" cy="205" r="2" fill="#172c3e"/>
+        <text x="43" y="160" font-size="18">A</text><text x="43" y="210" font-size="18">B</text>
+        <path d="M310 145V215" stroke="#172c3e" stroke-width="7"/><path d="M660 25V335" stroke="#758896" stroke-width="4"/>
+        <text x="30" y="347" font-size="12" fill="#536979">Draufsicht · Platz rechts für Beschriftungen</text>
+      </svg>
+      <div class="words"><strong>Beschriftungen:</strong> Lichtquellen A und B · Körper · vier Randstrahlen · Kernschatten · zwei Halbschattenbereiche · Wand<br><strong>Meine Linien:</strong> A: ____________________ &nbsp; B: ____________________</div>
+      <div class="merksatz-title">Merksatz 3 · Kern- und Halbschatten</div>
+      <p>Erkläre, welches Licht die beiden Bereiche bei zwei Punktquellen erreicht. Nutze Merksatz 3 aus der HTML.</p>
+      <div class="lines"></div>
+      <div class="merksatz-title">Merksatz 4 · Überlagerung und Teilschatten</div>
+      <p>Wann entsteht ein gemeinsamer Kernschatten? Was bedeutet Teilschatten allgemein? Nutze Merksatz 4 aus der HTML.</p>
+      <div class="lines"></div>
+      <div class="help"><strong>Prüfe jeden Bereich:</strong> Verfolge den Lichtweg von A und B getrennt. Ein einziger blockierter Weg reicht nicht für Kernschatten. Der Kernschatten liegt nur dort, wo beide einzelnen Schattenräume überlappen.</div>
+      <p class="finish"><i class="box"></i> Vier Randstrahlen <i class="box"></i> Kern- und Halbschatten beschriftet <i class="box"></i> zwei Merksätze<br><i class="box"></i> Ich kann einer anderen Person anhand meiner Zeichnung beide Schattenarten erklären.</p>
+      <div class="footer"><span>Licht und Schatten · Diese Seite ersetzt Heftzeichnung B</span><span>Arbeitsblatt 5 / 5</span></div>
+    </section>
+  </main>
+  <script>
+    "use strict";
+    document.getElementById("print").addEventListener("click",()=>window.print());
+  </script>
+</body>
+</html>
